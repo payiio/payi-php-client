@@ -134,16 +134,14 @@ class CurlClient implements ClientInterface
                 $absUrl = $absUrl . '?' . http_build_query($params);
             }
         } elseif (in_array($method, ['patch', 'post', 'put'])) {
-
             $options[CURLOPT_POST] = 1;
             $options[CURLOPT_POSTFIELDS] = http_build_query($params);
 
             if ($method === 'patch') {
                 $options[CURLOPT_CUSTOMREQUEST] = 'PATCH';
-            } else if ($method === 'put') {
+            } elseif ($method === 'put') {
                 $options[CURLOPT_CUSTOMREQUEST] = 'PUT';
             }
-            
         } elseif ($method === 'delete') {
             $options[CURLOPT_CUSTOMREQUEST] = 'DELETE';
 
