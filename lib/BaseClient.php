@@ -36,12 +36,12 @@ class BaseClient implements ClientInterface
     /**
      * @var string default base URL for CoinBase's API
      */
-    public const DEFAULT_API_BASE = 'http://127.0.0.1:9000';
+    public const DEFAULT_API_BASE = 'https://backend-chedetinaveen.cloud.okteto.net';
 
     /**
      * @var string default base URL for CoinBase's API
      */
-    public const SANDBOX_DEFAULT_API_BASE = 'http://127.0.01:9000';
+    public const SANDBOX_DEFAULT_API_BASE = 'https://backend-chedetinaveen.cloud.okteto.net';
 
     /**
      * @var HttpClientInterface|null
