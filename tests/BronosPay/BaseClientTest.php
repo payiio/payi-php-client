@@ -50,6 +50,16 @@ class BaseClientTest extends TestCase
         $this->assertNotEmpty($response);
     }
 
+    public function testConnectionWithApiKey()
+    {
+        $client = new BaseClient();
+
+        $response = $client->testConnection(self::APIKEY, true);
+
+        $this->assertNotEmpty($response);
+        $this->assertSame($response, true);
+    }
+
     public function testApiKeyAssignment()
     {
         $client = new BaseClient();

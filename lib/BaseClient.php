@@ -227,10 +227,8 @@ class BaseClient implements ClientInterface
     public static function testConnection($apiKey, bool $useSandboxEnv = false): bool
     {
         $client = new self($apiKey, $useSandboxEnv);
-
         try {
-            $client->request('get', '/v1/auth/test');
-
+            $client->request('get', '/api/v1/auth/test');
             return true;
         } catch (Exception $e) {
             return false;
