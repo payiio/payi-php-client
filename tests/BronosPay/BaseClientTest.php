@@ -29,7 +29,7 @@ class BaseClientTest extends TestCase
         $this->expectException(\BronosPay\Exception\InvalidArgumentException::class);
         $this->expectExceptionMessage('api_key cannot contain whitespace');
 
-        $client = new BaseClient(self::APIKEY . "\n");
+        $client = new BaseClient(self::$APIKEY . "\n");
     }
 
     public function testRequestThrowsIfInvalidApiKeyUsed()
@@ -52,7 +52,7 @@ class BaseClientTest extends TestCase
     {
         $client = new BaseClient();
 
-        $response = $client->testConnection(self::APIKEY, true);
+        $response = $client->testConnection(self::$APIKEY, true);
 
         $this->assertNotEmpty($response);
         $this->assertSame($response, true);
@@ -62,8 +62,8 @@ class BaseClientTest extends TestCase
     {
         $client = new BaseClient();
 
-        $client->setApiKey(self::APIKEY);
+        $client->setApiKey(self::$APIKEY);
 
-        $this->assertEquals($client->getApiKey(), self::APIKEY);
+        $this->assertEquals($client->getApiKey(), self::$APIKEY);
     }
 }
