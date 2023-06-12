@@ -90,7 +90,7 @@ class OrderServiceTest extends TestCase
     public function testListOrders()
     {
         $response = $this->service->list([
-            'wallet_id' => 'order-id',
+            'aid' => 'order-id',
             'status' => 'Symbol(completed)',
             'offset' => '0',
             'limit' => '100'

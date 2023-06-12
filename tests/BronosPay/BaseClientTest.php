@@ -38,16 +38,14 @@ class BaseClientTest extends TestCase
 
         $client = new BaseClient('123456789', true);
 
-        $client->request('get', '/api/v1/orders/get?id=1');
+        $client->request('get', '/api/gateway/v1/orders/1');
     }
 
     public function testPublicRequestWithEmptyApiKey()
     {
         $client = new BaseClient();
-
-        $response = $client->request('get', '/api/v1/ping');
-
-        $this->assertNotEmpty($response);
+        $this->expectException(\BronosPay\Exception\Api\Unauthorized::class);
+        $response = $client->request('get', '/api/gateway/v1/ping');
     }
 
     public function testConnectionWithApiKey()

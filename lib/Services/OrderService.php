@@ -16,7 +16,7 @@ class OrderService extends AbstractService
      */
     public function create(array $params = [])
     {
-        return $this->request('post', '/api/v1/orders/create', $params);
+        return $this->request('post', '/api/gateway/v1/orders', $params);
     }
 
 
@@ -28,17 +28,7 @@ class OrderService extends AbstractService
      */
     public function cancel(string $id)
     {
-        return $this->request('put', $this->buildPath('/api/v1/orders/%s/cancel', $id));
-    }
-
-    /**
-     * @param  int   $id
-     * @param  string[] $params
-     * @return Checkout|mixed
-     */
-    public function checkout(int $id, array $params = [])
-    {
-        return $this->request('post', $this->buildPath('/api/v1/orders/%s/checkout', $id), $params);
+        return $this->request('put', $this->buildPath('/api/gateway/v1/orders/%s/cancel', $id));
     }
 
     /**
@@ -49,7 +39,7 @@ class OrderService extends AbstractService
      */
     public function get(string $id)
     {
-        return $this->request('get', $this->buildPath('/api/v1/orders/get?id=%s', $id));
+        return $this->request('get', $this->buildPath('/api/gateway/v1/orders/%s', $id));
     }
 
     /**
@@ -60,6 +50,6 @@ class OrderService extends AbstractService
      */
     public function list(array $params = [])
     {
-        return $this->request('get', '/api/v1/orders/list', $params);
+        return $this->request('get', '/api/gateway/v1/orders', $params);
     }
 }
