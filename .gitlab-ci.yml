@@ -25,7 +25,9 @@ test:
 
 deploy:
   stage: deploy
+  image: alpine:latest
   script:
+    - apk update
     - apk add curl
     - 'curl --header "Job-Token: $CI_JOB_TOKEN" --data tag=<tag> "${CI_API_V4_URL}/projects/$CI_PROJECT_ID/packages/composer"'
   environment: production
