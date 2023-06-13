@@ -1,0 +1,26 @@
+stages:
+  - test
+  - deploy
+
+test:
+  stage: test
+  image: php:7.3.0
+  before_script:
+    - apt-get update
+    - apt-get install -y wget
+    - wget https://phar.phpunit.de/phpunit.phar
+    - chmod +x phpunit.phar
+    - wget https://getcomposer.org/installer
+    - php installer --install-dir=/usr/local/bin --filename=composer
+  script:
+    - composer install
+    - php ./phpunit.phar --configuration phpunit.xml
+
+deploy:
+  stage: deploy
+  script:
+    - apk add curl
+    - 'curl --header "Job-Token: $CI_JOB_TOKEN" --data tag=<tag> "${CI_API_V4_URL}/projects/$CI_PROJECT_ID/packages/composer"'
+  environment: production
+  only:
+    - tags
