@@ -4,14 +4,14 @@ stages:
 
 test:
   stage: test
-  image: php:7.3.0
-  before_script:
-    - apt-get update
-    - apt-get install -y wget
-    - wget https://phar.phpunit.de/phpunit.phar
-    - chmod +x phpunit.phar
-    - wget https://getcomposer.org/installer
-    - php installer --install-dir=/usr/local/bin --filename=composer
+  # image: php:7.3.0
+  # before_script:
+  #   - apt-get update
+  #   - apt-get install -y wget
+  #   - wget https://phar.phpunit.de/phpunit.phar
+  #   - chmod +x phpunit.phar
+  #   - wget https://getcomposer.org/installer
+  #   - php installer --install-dir=/usr/local/bin --filename=composer
   script:
     - composer install
     - php ./phpunit.phar --configuration phpunit.xml
