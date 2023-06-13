@@ -7,7 +7,7 @@ variables:
 
 stages:
   - test
-  - deploy
+  - release
 
 test:
   stage: test
@@ -23,8 +23,8 @@ test:
   script:
     - phpunit --configuration phpunit.xml
 
-deploy:
-  stage: deploy
+release:
+  stage: release
   image: alpine:latest
   script:
     - apk update
