@@ -2,6 +2,9 @@ cache:
   paths:
     - vendor/
 
+variables:
+  COMPOSER_PROCESS_TIMEOUT: 600
+
 stages:
   - test
   - deploy
@@ -11,14 +14,14 @@ test:
   image: php:latest
   before_script:
     - bash .ci/docker_install.sh > /dev/null
-    - wget https://composer.github.io/installer.sig -O - -q | tr -d '\n' > installer.sig
-    - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-    - php -r "if (hash_file('SHA384', 'composer-setup.php') === file_get_contents('installer.sig')) { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
-    - php composer-setup.php
-    - php -r "unlink('composer-setup.php'); unlink('installer.sig');"
-    - php composer.phar install
+    # - wget https://composer.github.io/installer.sig -O - -q | tr -d '\n' > installer.sig
+    # - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+    # - php -r "if (hash_file('SHA384', 'composer-setup.php') === file_get_contents('installer.sig')) { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+    # - php composer-setup.php
+    # - php -r "unlink('composer-setup.php'); unlink('installer.sig');"
+    # - php composer.phar install
   script:
-    - phpunit --configuration phpunit_myapp.xml
+    - phpunit --configuration phpunit.xml
 
 deploy:
   stage: deploy
