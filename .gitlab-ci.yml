@@ -8,7 +8,7 @@ stages:
 
 test:
   stage: test
-  image: php:7.3.0
+  image: php:latest
   before_script:
     - bash .ci/docker_install.sh > /dev/null
     - wget https://composer.github.io/installer.sig -O - -q | tr -d '\n' > installer.sig
